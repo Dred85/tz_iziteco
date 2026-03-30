@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS messages (
+    msgUuid UUID PRIMARY KEY,
+    head    VARCHAR(255),
+    timeRq  TIMESTAMP NOT NULL DEFAULT NOW()
+);

@@ -1,0 +1,31 @@
+#!/bin/sh
+# Maven Wrapper script
+# https://maven.apache.org/wrapper/
+
+set -e
+
+MAVEN_WRAPPER_JAR="$(dirname "$0")/.mvn/wrapper/maven-wrapper.jar"
+MAVEN_WRAPPER_PROPERTIES="$(dirname "$0")/.mvn/wrapper/maven-wrapper.properties"
+
+if [ ! -f "$MAVEN_WRAPPER_JAR" ]; then
+    echo "Error: Maven wrapper jar not found at $MAVEN_WRAPPER_JAR"
+    exit 1
+fi
+
+# Read distributionUrl from maven-wrapper.properties
+distributionUrl=$(grep 'distributionUrl' "$MAVEN_WRAPPER_PROPERTIES" | cut -d'=' -f2-)
+
+# Determine Maven home directory
+MAVEN_USER_HOME="${MAVEN_USER_HOME:-$HOME/.m2/wrapper}"
+MAVEN_HOME="$MAVEN_USER_HOME/dists/apache-maven-3.9.6"
+
+if [ ! -d "$MAVEN_HOME" ]; then
+    echo "Downloading Maven from $distributionUrl..."
+    mkdir -p "$MAVEN_USER_HOME/dists"
+    TMPFILE=$(mktemp)
+    curl -sL "$distributionUrl" -o "$TMPFILE"
+    unzip -q -o "$TMPFILE" -d "$MAVEN_USER_HOME/dists"
+    rm "$TMPFILE"
+fi
+
+exec "$MAVEN_HOME/bin/mvn" "$@"

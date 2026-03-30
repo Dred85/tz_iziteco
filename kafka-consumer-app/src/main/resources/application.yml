@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: kafka-consumer-app
+
+  # ===== Kafka =====
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: loadtest-consumer-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      # Многопоточная вычитка — 3 потока (по числу партиций топика)
+      concurrency: 3
+
+  # ===== PostgreSQL =====
+  datasource:
+    url: jdbc:postgresql://localhost:5433/loadtest
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# ===== Actuator + Prometheus =====
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+# Топик для прослушивания
+app:
+  kafka:
+    topic: test-topic
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} – %msg%n"
+  level:
+    com.loadtest: INFO
