@@ -12,3 +12,6 @@ Producer (JMeter) → Kafka → Consumer (Spring Boot) → PostgreSQL
 Запуск теста jmeter: jmeter -n -t kafka-load-test.jmx -l results.jtl -e -o report
 
 Управление задержкой заглушки: curl -X POST "http://localhost:8080/api/delay?ms=0"
+
+если нет метрик от kafka_exporter перезапустить контейнер:
+docker compose restart kafka-exporter

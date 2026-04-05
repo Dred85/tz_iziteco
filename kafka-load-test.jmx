@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Kafka Load Test" enabled="true">
-      <boolProp name="TestPlan.functional_mode">false</boolProp>
-      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
-      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Kafka Load Test">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <com.di.jmeter.kafka.config.KafkaProducerConfig guiclass="TestBeanGUI" testclass="com.di.jmeter.kafka.config.KafkaProducerConfig" testname="Kafka Producer Config">
@@ -38,7 +38,7 @@
         <boolProp name="same_user_on_next_iteration">true</boolProp>
       </com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup>
       <hashTree>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Generate UUID and Head" enabled="true">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Generate UUID and Head">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
@@ -64,7 +64,7 @@ vars.put(&quot;head&quot;, head.toString())</stringProp>
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <com.di.jmeter.kafka.sampler.KafkaProducerSampler guiclass="TestBeanGUI" testclass="com.di.jmeter.kafka.sampler.KafkaProducerSampler" testname="Kafka Producer Sampler" enabled="true">
+        <com.di.jmeter.kafka.sampler.KafkaProducerSampler guiclass="TestBeanGUI" testclass="com.di.jmeter.kafka.sampler.KafkaProducerSampler" testname="Kafka Producer Sampler">
           <stringProp name="kafkaProducerClientVariableName">kafkaProducerClient</stringProp>
           <stringProp name="kafkaTopic">test-topic</stringProp>
           <stringProp name="partitionString"></stringProp>
@@ -73,27 +73,32 @@ vars.put(&quot;head&quot;, head.toString())</stringProp>
           <collectionProp name="messageHeaders"/>
         </com.di.jmeter.kafka.sampler.KafkaProducerSampler>
         <hashTree/>
-        <kg.apc.jmeter.timers.VariableThroughputTimer guiclass="kg.apc.jmeter.timers.VariableThroughputTimerGui" testclass="kg.apc.jmeter.timers.VariableThroughputTimer" testname="Throughput Shaping Timer" enabled="true">
+        <kg.apc.jmeter.timers.VariableThroughputTimer guiclass="kg.apc.jmeter.timers.VariableThroughputTimerGui" testclass="kg.apc.jmeter.timers.VariableThroughputTimer" testname="Throughput Shaping Timer">
           <collectionProp name="load_profile">
-            <collectionProp name="84589817">
+            <collectionProp name="1925163059">
               <stringProp name="49">5</stringProp>
               <stringProp name="50">5</stringProp>
-              <stringProp name="51">300</stringProp>
+              <stringProp name="48873">180</stringProp>
             </collectionProp>
-            <collectionProp name="86091705">
-              <stringProp name="49">10</stringProp>
+            <collectionProp name="-190101037">
+              <stringProp name="1567">10</stringProp>
               <stringProp name="50">10</stringProp>
-              <stringProp name="51">300</stringProp>
+              <stringProp name="48873">180</stringProp>
             </collectionProp>
-            <collectionProp name="86093689">
-              <stringProp name="49">12</stringProp>
-              <stringProp name="50">12</stringProp>
-              <stringProp name="51">300</stringProp>
+            <collectionProp name="1543665537">
+              <stringProp name="1572">15</stringProp>
+              <stringProp name="1572">15</stringProp>
+              <stringProp name="48873">180</stringProp>
             </collectionProp>
-            <collectionProp name="86095673">
-              <stringProp name="49">14</stringProp>
-              <stringProp name="50">14</stringProp>
-              <stringProp name="51">300</stringProp>
+            <collectionProp name="1546187201">
+              <stringProp name="1598">20</stringProp>
+              <stringProp name="1598">20</stringProp>
+              <stringProp name="48873">180</stringProp>
+            </collectionProp>
+            <collectionProp name="1571040769">
+              <stringProp name="1603">25</stringProp>
+              <stringProp name="1603">25</stringProp>
+              <stringProp name="48873">180</stringProp>
             </collectionProp>
           </collectionProp>
         </kg.apc.jmeter.timers.VariableThroughputTimer>
@@ -135,7 +140,7 @@ vars.put(&quot;head&quot;, head.toString())</stringProp>
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -172,7 +177,7 @@ vars.put(&quot;head&quot;, head.toString())</stringProp>
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="InfluxDB Backend Listener" enabled="true">
+        <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="InfluxDB Backend Listener">
           <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="influxdbMetricsSender" elementType="Argument">
